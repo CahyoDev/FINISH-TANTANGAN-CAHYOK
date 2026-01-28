@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FINAL STAGE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { background-color: #1a1a1a; color: #00ff00; font-family: 'Courier New', monospace; padding: 20px; text-align: center; }
+        .container { max-width: 600px; margin: auto; padding-top: 50px; }
+        input { padding: 10px; font-size: 18px; width: 60%; text-align: center; margin-bottom: 20px; border: 2px solid #00ff00; background: black; color: white; }
+        button { padding: 10px 20px; font-size: 18px; background: #00ff00; color: black; border: none; cursor: pointer; font-weight: bold; }
+        #sampah { color: #555; word-wrap: break-word; font-size: 12px; margin-bottom: 20px; max-height: 100px; overflow: hidden; }
+        #hadiah { display: none; margin-top: 30px; border: 2px solid #00ff00; padding: 20px; }
+        img { max-width: 100%; border-radius: 10px; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>SYSTEM LOCKED</h1>
+        <p>Masukkan Kunci Dekripsi (Integer) untuk membersihkan data korup.</p>
+        
+        <div id="sampah">
+            Xy9z12...[DATA_ENCRYPTED]...001010101...ERROR...[CORRUPTED]...
+            (Data asli tersembunyi di sistem)
+        </div>
+
+        <input type="number" id="kunci" placeholder="Masukkan Angka Kunci...">
+        <br>
+        <button onclick="pecahkan()">DECRYPT</button>
+
+        <div id="hadiah">
+            <h1 style="color: yellow;">ACCESS GRANTED!</h1>
+            <p>Selamat, Anda telah menamatkan tantangan Cahyok.</p>
+            <p>Screenshot layar ini dan kirim ke whatsapp saya.</p>
+            <p>wa.me/6282138188516</p>
+           
+            <img src="https://media4.giphy.com/media/v1.Y2lkPTZjMDliOTUyaHg2ZnZ3bWlrczUxYTFocG16dXh4cjhtZm9sdWNvOHl5dHA5YWxxMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/aGSZ5eZnYCSdaLfBNC/giphy.gif" alt="Winner">
+        </div>
+    </div>
+
+    <script>
+        // Ini LOGIKA RAHASIANYA
+        // Kita buat string sampah sepanjang 172 karakter dulu
+        // Karena kuncinya adalah 172 (dari biner 10101100)
+        
+        const filler = "X".repeat(172); // Membuat 172 huruf 'X' otomatis
+        const pesanRahasia = "SELAMAT! KAMU ADALAH HACKER SEJATI. KIRIM BUKTI SETELAG ANDA KLIK TOMBOL OKE SEKARANG JUGA.";
+        
+        // Gabungkan sampah + pesan
+        const dataPenuh = filler + pesanRahasia;
+
+        function pecahkan() {
+            let inputUser = document.getElementById('kunci').value;
+            let outputDiv = document.getElementById('hadiah');
+            
+            // Cek apakah user memasukkan angka 172
+            if (inputUser == 172) {
+                // Hapus sampah (slice) dan tampilkan pesan
+                outputDiv.style.display = "block";
+                document.getElementById('sampah').style.display = "none";
+                alert("SISTEM DIBUKA: " + dataPenuh.slice(172));
+            } else {
+                alert("Kunci Salah! Cek lagi biner di Terminal.");
+            }
+        }
+    </script>
+
+</body>
+</html>
