@@ -4,66 +4,74 @@
     <title>FINAL STAGE</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        body { background-color: #1a1a1a; color: #00ff00; font-family: 'Courier New', monospace; padding: 20px; text-align: center; }
+        body { background-color: #0d0d0d; color: #00ff00; font-family: 'Courier New', monospace; padding: 20px; text-align: center; }
         .container { max-width: 600px; margin: auto; padding-top: 50px; }
-        input { padding: 10px; font-size: 18px; width: 60%; text-align: center; margin-bottom: 20px; border: 2px solid #00ff00; background: black; color: white; }
-        button { padding: 10px 20px; font-size: 18px; background: #00ff00; color: black; border: none; cursor: pointer; font-weight: bold; }
-        #sampah { color: #555; word-wrap: break-word; font-size: 12px; margin-bottom: 20px; max-height: 100px; overflow: hidden; }
-        #hadiah { display: none; margin-top: 30px; border: 2px solid #00ff00; padding: 20px; }
-        img { max-width: 100%; border-radius: 10px; margin-top: 10px; }
+        input { padding: 10px; font-size: 18px; width: 60%; text-align: center; margin-bottom: 20px; border: 2px solid #00ff00; background: black; color: white; outline: none; }
+        button { padding: 10px 20px; font-size: 18px; background: #00ff00; color: black; border: none; cursor: pointer; font-weight: bold; text-transform: uppercase; }
+        button:hover { background: #00cc00; }
+        #sampah { color: #444; word-wrap: break-word; font-size: 12px; margin-bottom: 20px; max-height: 100px; overflow: hidden; letter-spacing: 2px; }
+        #hadiah { display: none; margin-top: 30px; border: 2px solid #00ff00; padding: 20px; background: rgba(0, 255, 0, 0.05); }
+        img { max-width: 100%; border-radius: 5px; margin-top: 15px; border: 1px solid #00ff00; }
+        a { color: #00ff00; text-decoration: underline; font-weight: bold; }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>SYSTEM LOCKED</h1>
-        <p>Masukkan Kunci Dekripsi (Integer) untuk membersihkan data korup.</p>
+        <h1 style="border-bottom: 1px solid #00ff00; display: inline-block; padding-bottom: 10px;">SYSTEM LOCKED</h1>
+        <p style="font-size: 14px;">ENTER DECRYPTION KEY (INTEGER) TO SANITIZE CORRUPTED DATA STREAM.</p>
         
         <div id="sampah">
-            Xy9z12...[DATA_ENCRYPTED]...001010101...ERROR...[CORRUPTED]...
-            (Data asli tersembunyi di sistem)
+            Xy9z12...[ENCRYPTED_0x99]...001010101...FATAL_ERROR...[SEGMENT_FAULT]...
+            <br>(Original payload hidden in system memory)
         </div>
 
-        <input type="number" id="kunci" placeholder="Masukkan Angka Kunci...">
+        <input type="number" id="kunci" placeholder="ENTER PASSCODE...">
         <br>
-        <button onclick="pecahkan()">DECRYPT</button>
+        <button onclick="pecahkan()">INITIATE DECRYPT</button>
 
         <div id="hadiah">
-            <h1 style="color: yellow;">ACCESS GRANTED!</h1>
-            <p>Selamat, Anda telah menamatkan tantangan Cahyok.</p>
-            <p>Screenshot layar ini dan kirim ke whatsapp saya.</p>
-            <p>wa.me/6282138188516</p>
-           
+            <h1 style="color: #00ff00; text-shadow: 0 0 10px #00ff00;">ACCESS GRANTED!</h1>
+            <p>CONGRATULATIONS.</p>
+            <p>You have successfully penetrated the system.</p>
+            <p>Capture this screen as proof and report to HQ immediately:</p>
+            
+            <p><a href="https://wa.me/6282138188516">>> SEND EVIDENCE TO WHATSAPP <<</a></p>
+            
             <img src="https://media4.giphy.com/media/v1.Y2lkPTZjMDliOTUyaHg2ZnZ3bWlrczUxYTFocG16dXh4cjhtZm9sdWNvOHl5dHA5YWxxMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/aGSZ5eZnYCSdaLfBNC/giphy.gif" alt="Winner">
         </div>
     </div>
 
     <script>
-        // Ini LOGIKA RAHASIANYA
-        // Kita buat string sampah sepanjang 172 karakter dulu
-        // Karena kuncinya adalah 172 (dari biner 10101100)
+        // === SECRET LOGIC ===
+        // Key is 172 (Decimal from Binary 10101100)
         
-        const filler = "X".repeat(172); // Membuat 172 huruf 'X' otomatis
-        const pesanRahasia = "SELAMAT! KAMU ADALAH HACKER SEJATI. KIRIM BUKTI SETELAG ANDA KLIK TOMBOL OKE SEKARANG JUGA.";
+        const filler = "X".repeat(172); 
+        // Pesan Alert juga diubah ke Inggris biar konsisten
+        const pesanRahasia = "MISSION ACCOMPLISHED! YOU ARE A TRUE ELITE HACKER. SEND US A SCREENSHOT AFTER CLICKING THE OK BUTTON NOW.";
         
-        // Gabungkan sampah + pesan
         const dataPenuh = filler + pesanRahasia;
 
         function pecahkan() {
             let inputUser = document.getElementById('kunci').value;
             let outputDiv = document.getElementById('hadiah');
+            let sampahDiv = document.getElementById('sampah');
             
-            // Cek apakah user memasukkan angka 172
             if (inputUser == 172) {
-                // Hapus sampah (slice) dan tampilkan pesan
+                // Success State
                 outputDiv.style.display = "block";
-                document.getElementById('sampah').style.display = "none";
-                alert("SISTEM DIBUKA: " + dataPenuh.slice(172));
+                sampahDiv.style.display = "none";
+                document.querySelector('h1').innerText = "SYSTEM UNLOCKED"; // Ubah judul atas
+                document.querySelector('p').innerText = "Data stream restored successfully.";
+                
+                // Alert Hacker Style
+                alert(">> DECRYPTION SUCCESSFUL <<\nMESSAGE: " + dataPenuh.slice(172));
             } else {
-                alert("Kunci Salah! Cek lagi biner di Terminal.");
+                // Error State
+                alert("ACCESS DENIED: Invalid Passcode.\nCheck the Binary Code from the Terminal again.");
             }
         }
     </script>
 
 </body>
-</html>
+            </html>
